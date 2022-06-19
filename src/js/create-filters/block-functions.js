@@ -10,27 +10,33 @@ export default class Actions {
         this.input = new Range(this.rangeInput, this.priceInput)
     }
 
-    async openCloseModalStreet() {
+    conditionsForSelects(e, wrapper, list, zeroItem) {
+        list.forEach(li => {
+            if (e.target === li) {
+                if (zeroItem.classList.contains('streetlist__search')) {
+                    zeroItem.value = li.outerText;
+                } else if (zeroItem.classList.contains('open__zero')) {
+                    zeroItem.innerHTML = li.outerText;
+                }
+            }
+        })
+        if (e.target === zeroItem && !wrapper.classList.contains('open')) {
+            wrapper.classList.add('open')
+            list.forEach(street => street.classList.add('open'))
+            return
+        } else {
+            wrapper.classList.remove('open')
+            list.forEach(street => street.classList.remove('open'))
+            return
+        }
+    }
+
+    openCloseModalStreet() {
         const list = document.querySelector('.streetlist')
         const li = document.querySelectorAll('.streetlist__li')
         const search = document.querySelector('.streetlist__search')
-        console.log(li)
         document.addEventListener('click', (e) => {
-            li.forEach(st => {
-                console.log(st)
-                if (e.target === st) {
-                    search.value = st.outerText;
-                }
-            })
-            if (e.target === search && !list.classList.contains('show')) {
-                list.classList.add('show')
-                li.forEach(street => street.classList.add('active'))
-                return
-            } else {
-                list.classList.remove('show')
-                li.forEach(street => street.classList.remove('active'))
-                return
-            }
+            this.conditionsForSelects(e, list, li, search)
         })
     }
 
@@ -39,26 +45,13 @@ export default class Actions {
         const li = document.querySelectorAll('.rooms-filter-options__value')
         const first = document.querySelector('.open__zero')
         document.addEventListener('click', (e) => {
-            li.forEach(l => {
-                if (e.target === l) {
-                    first.innerHTML = l.outerText
-                }
-            })
-            if (e.target === first && !list.classList.contains('open')) {
-                list.classList.add('open')
-                li.forEach(l => l.classList.add('open'))
-                return
-            } else {
-                list.classList.remove('open')
-                li.forEach(l => l.classList.remove('open'))
-                return
-            }
+            this.conditionsForSelects(e, list, li, first)
         })
     }
 
     minMaxPrice(json, action) {
         const arr = []
-        json.map(flat => arr.push(flat))
+        json.map(flat => arr.push(flat.price))
         if (action === 'min') {
             let minPrice = Math.min(...arr)
             return minPrice

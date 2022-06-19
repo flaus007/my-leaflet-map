@@ -10,12 +10,12 @@ export default class FiltersForm {
     }
 
     initStreetList(jsonFlats) {
-        this.open.openCloseModalStreet()
-        this.open.openCloseModalRooms()
+        this.form.createSelectStreet(jsonFlats)
         this.open.renderPriceValue(jsonFlats)
         this.open.inputPrice()
+        this.open.openCloseModalStreet()
+        this.open.openCloseModalRooms()
 
-        this.form.createSelectStreet(jsonFlats)
         this.form.loaded(jsonFlats[0])
         this.form.loaded(jsonFlats[1])
     }

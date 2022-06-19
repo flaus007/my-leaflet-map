@@ -22,7 +22,6 @@ export default class Content {
     }
 
     destroy() {
-        // const item = document.querySelector('.item')
         this.item.innerHTML = ''
         this.item.remove()
     }

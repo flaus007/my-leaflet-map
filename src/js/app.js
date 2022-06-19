@@ -1,8 +1,7 @@
-import initApplication from './map/main-init-map'
-import FunctionalRightBlock from './create-filters/right-block'
-
-import flatJson from './map/fetch-json-object'
-import Content from './map/content'
+import initApplication from './map/main-init-map'  // init map
+import flatJson from './map/fetch-json-object' // json for all functions
+import Content from './map/content' // markers popup
+import FunctionalRightBlock from './create-filters/right-block' // init right block
 import '../style/style.scss' // link style
 
 const map = document.querySelector('.wrapper')

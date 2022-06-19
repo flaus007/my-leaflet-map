@@ -81,7 +81,7 @@ $sail-blue: #326789;
     position: absolute;
     left: 0;
     right: 0;
-    &.show {
+    &.open {
         overflow-y: scroll;
         box-sizing: content-box;
         scrollbar-width: none;
@@ -90,7 +90,7 @@ $sail-blue: #326789;
         display: none;
         z-index: 0;
         &.active--zero,
-        &.active {
+        &.open {
             background-color: #fff;
             position: relative;
             display: flex;
