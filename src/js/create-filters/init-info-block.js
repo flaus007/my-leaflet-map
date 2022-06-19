@@ -10,16 +10,18 @@ export default class FiltersForm {
     }
 
     initStreetList(jsonFlats) {
-        let j = 2;
-
-        this.form.createSelectStreet(jsonFlats)
         this.open.openCloseModalStreet()
         this.open.openCloseModalRooms()
-        this.open.renderMinMaxPrice(jsonFlats)
+        this.open.renderPriceValue(jsonFlats)
         this.open.inputPrice()
 
+        this.form.createSelectStreet(jsonFlats)
         this.form.loaded(jsonFlats[0])
         this.form.loaded(jsonFlats[1])
+    }
+
+    windowScroll(jsonFlats) {
+        let j = 2
         window.addEventListener('scroll', () => {
             const documentRec = document.documentElement.getBoundingClientRect()
             if (documentRec.bottom < document.documentElement.clientHeight + 100) {

@@ -1,5 +1,6 @@
 import initApplication from './map/main-init-map'
-import FiltersForm from './create-filters/init-info-block' // form
+import FunctionalRightBlock from './create-filters/right-block'
+
 import flatJson from './map/fetch-json-object'
 import Content from './map/content'
 import '../style/style.scss' // link style
@@ -8,12 +9,12 @@ const map = document.querySelector('.wrapper')
 
 document.addEventListener('DOMContentLoaded', async () => {
     const app = new initApplication() // left block
-    const block = new FiltersForm() // right block
+    const rightBlock = new FunctionalRightBlock() // right block
     const fjson = new flatJson() // json
 
     await fjson.fetchFlats()
 
-    block.initStreetList(fjson.flats)
+    rightBlock.initRightBlock(fjson.flats)
     app.init(fjson.flats)
 })
 
