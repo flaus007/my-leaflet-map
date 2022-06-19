@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <div class="finder">
+
+            <div class="container">
+
+                <div class="topline">
+                    <svg class="topline__icon icon-home">
+                        <use xlink:href="#icon-home"></use>
+                        <symbol id="icon-home" viewBox="0 0 32 32">
+                            <path
+                                d="M32 18.451l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18v12h-8v-8h-8v8h-8v-12l12-9z">
+                            </path>
+                        </symbol>
+                    </svg>
+                    <h2 class="topline__text">Продаж квартир</h2>
+                </div>
+    
+                <!--    -->
+    
+                <div class="street">
+                    <span class="street__title">Адреса</span>
+    
+                    <ul class="streetlist">
+                        <!-- add show class -->
+                        <li class="streetlist__li active--zero">
+                            <input type="text" class="streetlist__search" placeholder="Пошук...">
+                        </li>
+                    </ul>
+                </div>
+    
+                <!--   -->
+    
+                <div class="rooms-filter">
+                    <span class="rooms-filter__title">Кількість кімнат</span>
+    
+                    <ul class="rooms-filter-options">
+                        <!-- add open class for all ul and li -->
+                        <li class="rooms-filter-options__value open__zero">-</li>
+                        <li class="rooms-filter-options__value">1</li>
+                        <li class="rooms-filter-options__value">2</li>
+                        <li class="rooms-filter-options__value">3</li>
+                        <li class="rooms-filter-options__value">4</li>
+                    </ul>
+    
+                </div>
+    
+                <!--   -->
+    
+                <div class="price">
+                    <div class="price-bottom">
+                        <span class="price-bottom__text">Від</span>
+                        <input type="number" class="price-bottom__input price-min js-min">
+                        <span class="price-bottom__text">До</span>
+                        <input type="number" class="price-bottom__input price-max js-max">
+                        <span class="price-bottom__text">$</span>
+                    </div>
+
+                    <div class="price-slider">
+                        <div class="price-slider__progress"></div>
+                    </div>
+                    
+                    <div class="price-range">
+                        <input type="range" class="price-range__input range-min js-min" step="1000">
+                        <input type="range" class="price-range__input range-max js-max" step="1000">
+                    </div>
+                </div>
+    
+                <!--   -->
+                
+            </div>
+
+            <div class="cards"></div>
+
+        </div>
+        
+        <div class="wrapper">
+            <div id="map" class="block-map"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

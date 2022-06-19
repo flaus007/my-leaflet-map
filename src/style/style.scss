@@ -1,0 +1,462 @@
+@import "../../node_modules/leaflet/dist/leaflet.css";
+@import "../../node_modules/modern-normalize/modern-normalize.css";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap');
+
+$blue: #2095f2;
+$green: #21605d;
+$sail-blue: #326789;
+
+// application
+.app {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #c4dfe6;
+}
+
+// find block = right block
+.finder {
+    min-height: 100vh;
+    flex-basis: 45%;
+    padding: 0 30px;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+// container filters
+.container {
+    display: block;
+    max-height: 400px;
+    position: relative;
+}
+
+// block icon and title
+.topline {
+    display: block;
+    min-height: 100px;
+    text-align: center;
+    &__icon {
+        display: block;
+        max-width: 45px;
+        max-height: 45px;
+        position: absolute;
+        top: 5px;
+        right: 6%;
+        stroke-width: 0;
+        fill: $green;
+        cursor: pointer;
+    }
+    &__text {
+        margin: 16px auto;
+        padding: 15px 0;
+        font-weight: 600;
+        font-size: 28px;
+        cursor: pointer;
+        color: black;
+    }
+}
+
+// select street start
+.street {
+    display: block;
+    min-height: 100px;
+    max-height: 200px;
+    padding-left: 0;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    position: relative;
+    &__title {
+        display: block;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+
+.streetlist {
+    padding-left: 0;
+    margin: 6px 0 0 20px;
+    height: 280px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    &.show {
+        overflow-y: scroll;
+        box-sizing: content-box;
+        scrollbar-width: none;
+    }
+    &__li {
+        display: none;
+        z-index: 0;
+        &.active--zero,
+        &.active {
+            background-color: #fff;
+            position: relative;
+            display: flex;
+            border: 1px solid $blue;
+            border-radius: 5px;
+            list-style-type: none;
+            width: 100%;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-weight: 600;
+            font-size: 18px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: 0.2s linear all;
+            &:hover {
+                background-color: $blue;
+                color: white;
+                transition: 0.2s linear all;
+            }
+        }
+        &.active--zero {
+            border: none;
+        }
+    }
+    &__search {
+        display: block;
+        border: 1px solid $sail-blue;
+        border-radius: 5px;
+        font-weight: 600;
+        color: black;
+        font-size: 16px;
+        width: 100%;
+        height: 100%;
+        padding-left: 10px;
+    }
+}
+
+// select street finish
+
+// rooms-filter start
+.rooms-filter {
+    display: inline-block;
+    width: 30%;
+    margin-left: 20px;
+    position: relative;
+    min-height: 100px;
+    &__title {
+        display: block;
+        text-align: center;
+        font-weight: 600;
+        font-size: 20px;
+    }
+}
+
+.rooms-filter-options {
+    display: block;
+    min-height: 50px;
+    padding-left: 0;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    &__value {
+        display: none;
+        &.open {
+            position: relative;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style-type: none;
+            border: 1px solid $blue;
+            border-top: none;
+            border-radius: 5px;
+            min-height: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            z-index: 9999;
+            cursor: pointer;
+            &:hover {
+                background-color: $blue;
+                border: 1px solid $blue;
+                color: white;
+                transition: 0.2s linear all;
+            }
+            &__zero {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                list-style-type: none;
+                background-color: #fff;
+                border: 1px solid $sail-blue;
+                min-height: 40px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-weight: 400;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+// rooms-filter finish
+
+// input price
+.price {
+    display: inline-block;
+    width: 57%;
+    position: absolute;
+    margin-left: 30px;
+}
+
+.price-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70px;
+    &__text {
+        margin: 0 15px;
+        font-size: 14px;
+        font-weight: 400;
+    }
+    &__input {
+        width: 70px;
+        min-height: 40px;
+        border: 1px solid $sail-blue;
+        border-radius: 5px;
+        text-align: center;
+        -moz-appearance: textfield;
+        font-size: 16px;
+        font-weight: 400;
+        &::-webkit-outer-spin-button,
+        ::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+}
+
+.price-slider {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-right: 5px;
+    height: 5px;
+    position: relative;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    &__progress {
+        height: 100%;
+        left: 0;
+        right: 0;
+        position: absolute;
+        border-radius: 5px;
+        background: $blue;
+    }
+}
+
+.price-range {
+    position: relative;
+    min-height: 5px;
+    &__input {
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        top: -5px;
+        background: none;
+        pointer-events: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        &::-webkit-slider-thumb {
+            height: 17px;
+            width: 17px;
+            border-radius: 50%;
+            background: $sail-blue;
+            pointer-events: auto;
+            -webkit-appearance: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+        }
+        &::-moz-range-thumb {
+            height: 17px;
+            width: 17px;
+            border: none;
+            border-radius: 50%;
+            background: $sail-blue;
+            pointer-events: auto;
+            -moz-appearance: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+        }
+    }
+}
+
+// input price
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 45%;
+    min-height: 100vh;
+}
+
+.block-map {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 100vh;
+}
+
+// block cards start
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+    margin-top: 30px;
+}
+
+.card {
+    display: flex;
+    margin-bottom: 30px;
+    min-height: 230px;
+    border: 1px solid $green;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 15px 3px $green;
+    cursor: pointer;
+    background-color: $green;
+}
+
+.card-photo {
+    flex-basis: 50%;
+    img {
+        width: 100%;
+        height: 100%;
+        padding: 20px 5px 20px 15px;
+        box-sizing: border-box;
+    }
+}
+
+.card-info {
+    flex-basis: 50%;
+    padding: 0 15px;
+    position: relative;
+    &__price {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    &__city {
+        position: absolute;
+        top: 7px;
+        right: 13%;
+        font-weight: 600;
+        font-size: 20px;
+    }
+    &__street {
+        font-weight: 600;
+        font-size: 20px;
+        cursor: text;
+    }
+    &__rooms {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    &__date {
+        position: absolute;
+        bottom: 0;
+    }
+    &__call {
+        position: absolute;
+        bottom: 15px;
+        right: 10%;
+        border-radius: 5px;
+        // border: none;
+        cursor: pointer;
+        background-color: $green;
+        border: 1px solid #fff;
+        transition: 0.3s linear all;
+        img {
+            margin: 5px;
+            width: 20px;
+            height: 20px;
+        }
+        &:hover {
+            background-color: $blue;
+            border-color: $blue;
+            transition: 0.3s linear all;
+        }
+    }
+}
+
+// block cards finish
+
+// main left block - map
+
+.my-div-icon {
+    color: transparent;
+    background-image: url('../../image/location2.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-height: 23px;
+    min-width: 23px;
+}
+
+.hide {
+    display: block;
+    height: 21px;
+    width: 17px;
+    margin-left: 3px;
+    cursor: pointer;
+}
+
+.item {
+    z-index: 9999999;
+    display: flex;
+    text-align: center;
+    flex-wrap: no-wrap;
+    width: 500px;
+    height: 150px;
+    position: absolute;
+    bottom: 10px;
+    left: 25%;
+    background-color: $green;
+    border: 1px solid $green;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    &__text {
+        height: 100%;
+        margin-left: 10px;
+        flex-basis: 80%;
+        padding-top: 15px;
+    }
+    &__close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+    }
+    &__photo {
+        position: relative;
+        display: block;
+        height: 95%;
+        margin-top: 5px;
+        width: 150px;
+        box-sizing: content-box;
+    }
+}
+
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background-color: #fe5722;
+    color: white;
+    text-align: center;
+}
+
+.leaflet-popup-close-button {
+    span {
+        color: white;
+    }
+}
