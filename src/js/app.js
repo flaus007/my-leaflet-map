@@ -14,9 +14,10 @@ document.addEventListener('DOMContentLoaded', async () => { // download web site
     const fjson = new flatJson() // json
 
     await fjson.fetchFlats()
-
+    await fjson.proxyActiveFlats()
+    
     rightBlock.initRightBlock(fjson.flats)
-    app.init(fjson.flats)
+    app.init(fjson.activeFlats)
 })
 
 map.addEventListener('click', (e) => { // popup

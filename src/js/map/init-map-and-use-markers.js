@@ -1,4 +1,4 @@
-import L from 'leaflet';
+import L, { marker } from 'leaflet';
 
 export default class Functional {
     map
