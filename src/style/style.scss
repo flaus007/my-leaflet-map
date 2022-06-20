@@ -22,7 +22,34 @@ $sail-blue: #326789;
     flex-basis: 45%;
     padding: 0 30px;
     font-family: 'Nunito Sans', sans-serif;
+    position: relative;
 }
+
+// preloader
+
+#preloader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 9999999;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    background: transparent url('//cdnjs.cloudflare.com/ajax/libs/file-uploader/3.7.0/processing.gif') no-repeat center center;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
 
 // container filters
 .container {
@@ -36,6 +63,7 @@ $sail-blue: #326789;
     display: block;
     min-height: 100px;
     text-align: center;
+
     &__icon {
         display: block;
         max-width: 45px;
@@ -47,6 +75,7 @@ $sail-blue: #326789;
         fill: $green;
         cursor: pointer;
     }
+
     &__text {
         margin: 16px auto;
         padding: 15px 0;
@@ -66,6 +95,7 @@ $sail-blue: #326789;
     margin-right: 30px;
     margin-bottom: 20px;
     position: relative;
+
     &__title {
         display: block;
         text-align: center;
@@ -81,14 +111,17 @@ $sail-blue: #326789;
     position: absolute;
     left: 0;
     right: 0;
+
     &.open {
         overflow-y: scroll;
         box-sizing: content-box;
         scrollbar-width: none;
     }
+
     &__li {
         display: none;
         z-index: 0;
+
         &.active--zero,
         &.open {
             background-color: #fff;
@@ -107,16 +140,19 @@ $sail-blue: #326789;
             z-index: 9999;
             cursor: pointer;
             transition: 0.2s linear all;
+
             &:hover {
                 background-color: $blue;
                 color: white;
                 transition: 0.2s linear all;
             }
         }
+
         &.active--zero {
             border: none;
         }
     }
+
     &__search {
         display: block;
         border: 1px solid $sail-blue;
@@ -139,6 +175,7 @@ $sail-blue: #326789;
     margin-left: 20px;
     position: relative;
     min-height: 100px;
+
     &__title {
         display: block;
         text-align: center;
@@ -156,8 +193,10 @@ $sail-blue: #326789;
     left: 0;
     right: 0;
     z-index: 1000;
+
     &__value {
         display: none;
+
         &.open {
             position: relative;
             background-color: white;
@@ -173,12 +212,14 @@ $sail-blue: #326789;
             font-size: 16px;
             z-index: 9999;
             cursor: pointer;
+
             &:hover {
                 background-color: $blue;
                 border: 1px solid $blue;
                 color: white;
                 transition: 0.2s linear all;
             }
+
             &__zero {
                 display: flex;
                 justify-content: center;
@@ -211,11 +252,13 @@ $sail-blue: #326789;
     justify-content: center;
     align-items: center;
     min-height: 70px;
+
     &__text {
         margin: 0 15px;
         font-size: 14px;
         font-weight: 400;
     }
+
     &__input {
         width: 70px;
         min-height: 40px;
@@ -225,6 +268,7 @@ $sail-blue: #326789;
         -moz-appearance: textfield;
         font-size: 16px;
         font-weight: 400;
+
         &::-webkit-outer-spin-button,
         ::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -243,6 +287,7 @@ $sail-blue: #326789;
     background: #fff;
     border-radius: 5px;
     overflow: hidden;
+
     &__progress {
         height: 100%;
         left: 0;
@@ -256,6 +301,7 @@ $sail-blue: #326789;
 .price-range {
     position: relative;
     min-height: 5px;
+
     &__input {
         position: absolute;
         width: 100%;
@@ -265,6 +311,7 @@ $sail-blue: #326789;
         pointer-events: none;
         -webkit-appearance: none;
         -moz-appearance: none;
+
         &::-webkit-slider-thumb {
             height: 17px;
             width: 17px;
@@ -274,6 +321,7 @@ $sail-blue: #326789;
             -webkit-appearance: none;
             box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
         }
+
         &::-moz-range-thumb {
             height: 17px;
             width: 17px;
@@ -330,6 +378,7 @@ $sail-blue: #326789;
 
 .card-photo {
     flex-basis: 50%;
+
     img {
         width: 100%;
         height: 100%;
@@ -342,10 +391,12 @@ $sail-blue: #326789;
     flex-basis: 50%;
     padding: 0 15px;
     position: relative;
+
     &__price {
         font-size: 24px;
         font-weight: 600;
     }
+
     &__city {
         position: absolute;
         top: 7px;
@@ -353,19 +404,23 @@ $sail-blue: #326789;
         font-weight: 600;
         font-size: 20px;
     }
+
     &__street {
         font-weight: 600;
         font-size: 20px;
         cursor: text;
     }
+
     &__rooms {
         font-size: 20px;
         font-weight: 600;
     }
+
     &__date {
         position: absolute;
         bottom: 0;
     }
+
     &__call {
         position: absolute;
         bottom: 15px;
@@ -376,11 +431,13 @@ $sail-blue: #326789;
         background-color: $green;
         border: 1px solid #fff;
         transition: 0.3s linear all;
+
         img {
             margin: 5px;
             width: 20px;
             height: 20px;
         }
+
         &:hover {
             background-color: $blue;
             border-color: $blue;
@@ -425,18 +482,21 @@ $sail-blue: #326789;
     border-radius: 5px;
     color: #fff;
     padding: 10px 20px;
+
     &__text {
         height: 100%;
         margin-left: 10px;
         flex-basis: 80%;
         padding-top: 15px;
     }
+
     &__close {
         position: absolute;
         top: 5px;
         right: 5px;
         cursor: pointer;
     }
+
     &__photo {
         position: relative;
         display: block;
