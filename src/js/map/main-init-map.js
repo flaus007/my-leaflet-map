@@ -8,12 +8,10 @@ export default class initApplication {
         this.map = new Functional()
     }
 
-    init(jsonFlats) {
+    initMyMap(jsonFlats) {
         try{
             this.map.initMap()
-            jsonFlats.map(flat => {
-                this.map.initMarkers(flat)
-            })
+            this.map.initMapAndMarkers(jsonFlats)
         } catch (e) {
             console.log(e)
         }
