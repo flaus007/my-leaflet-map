@@ -5,6 +5,7 @@ import FunctionalRightBlock from './create-filters/right-block' // init right bl
 import Preloader from './preloader'  // preloader download
 import '../style/style.scss' // link style
 
+
 const map = document.querySelector('.wrapper')
 const load = new Preloader()
 
@@ -24,6 +25,7 @@ map.addEventListener('click', (e) => { // popup
     const app = new Content()
     app.initPopup(e)
 })
+
 
 load.loadData().then(() => {  // preloaded
     let preLoader = document.getElementById('preloader')

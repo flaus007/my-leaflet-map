@@ -448,6 +448,31 @@ $sail-blue: #326789;
 
 // block cards finish
 
+// btn rerender
+
+.btn-render{
+    display: flex;
+    min-width: 30px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    background-color: $green;
+    border: 1px solid $green;
+    border-radius: 5px;
+    color: #fff;
+    min-height: 40px;
+    position: fixed;
+    top: 15px;
+    right: 46%;
+    z-index: 9999999;
+    cursor: pointer;
+}
+
+.loop{
+    width: 20px;
+    height: 20px;
+}
+
 // main left block - map
 
 .my-div-icon {
