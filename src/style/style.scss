@@ -482,6 +482,9 @@ $sail-blue: #326789;
     background-repeat: no-repeat;
     min-height: 23px;
     min-width: 23px;
+    &.hide{
+        display: none;
+    }
 }
 
 .hide {

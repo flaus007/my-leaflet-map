@@ -15,12 +15,10 @@ export default class Range {
         if (e.target.classList.contains('js-min')) {
             input[0].value = min
             this.range.style.left = (((min - this.fixedMin) / (inputS[0].max - this.fixedMin)) * 100) + '%'
-            console.log(this.range.style.left)
         }
         if (e.target.classList.contains('js-max')) {
             input[1].value = max
             this.range.style.right = 100 - ((max - this.fixedMin) / (inputS[1].max - this.fixedMin)) * 100 + '%'
-            console.log(this.range.style.right)
         }
     }
 

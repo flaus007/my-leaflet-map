@@ -1,15 +1,21 @@
 import L, { marker } from 'leaflet';
 
 export default class Functional {
-    map
-    markers
+    // map
+    // markers
     myIcon
     popup
 
+    constructor() {
+        this.map = L.map('map')
+        this.markers = new L.LayerGroup()
+    }
+
+
     initMap() {
-        this.map = L.map('map').setView([49.587085, 34.543770], 13)
+        this.map.setView([49.587085, 34.543770], 13)
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map)
-        this.markers = new L.LayerGroup().addTo(this.map)
+        // this.markers.addTo(this.map)
     }
 
     initMarkers(obj) {
@@ -31,7 +37,8 @@ export default class Functional {
             .bindTooltip(obj.street).openTooltip()
             .addTo(this.markers)
 
-            return marker
+        this.markers.addTo(this.map)
+        return marker
     }
 
     initMapAndMarkers(obj) {  // add new func

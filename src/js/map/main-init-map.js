@@ -11,9 +11,13 @@ export default class initApplication {
     initMyMap(jsonFlats) {
         try{
             this.map.initMap()
-            this.map.initMapAndMarkers(jsonFlats)
+            // this.map.initMapAndMarkers(jsonFlats)
         } catch (e) {
             console.log(e)
         }
+    }
+
+    renderMarkers(jsonFlats) {
+        this.map.initMapAndMarkers(jsonFlats)
     }
 }

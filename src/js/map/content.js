@@ -31,6 +31,12 @@ export default class Content {
             console.log(e.target)
             this.popup(e.target)
         }
+        const btn = document.querySelector('.btn-render')
+        const loop = document.querySelector('.loop')
+
+        if(e.target === btn || e.target === loop) {
+            return
+        }
 
         const close = document.querySelector('.item__close')
         const map = document.querySelector('.block-map')
