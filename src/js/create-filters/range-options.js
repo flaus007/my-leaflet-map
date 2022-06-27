@@ -7,14 +7,15 @@ export default class Range {
         this.priceGap = 5000
         this.inputRange = inputRange
         this.inputPrice = inputPrice
-        this.fixedMin = inputPrice[0].value
         this.range = document.querySelector('.price-slider .price-slider__progress')
+        this.fixedMin = this.inputPrice[0].value
     }
 
-    rangePosition(e, input, inputS, min, max) {
+    rangePosition(e, input, inputS, min, max){
         if (e.target.classList.contains('js-min')) {
             input[0].value = min
             this.range.style.left = (((min - this.fixedMin) / (inputS[0].max - this.fixedMin)) * 100) + '%'
+            console.log(this.fixedMin)
         }
         if (e.target.classList.contains('js-max')) {
             input[1].value = max
