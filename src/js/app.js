@@ -1,50 +1,37 @@
 import initApplication from './map/main-init-map'  // init map
-import flatJson from './map/fetch-json-object' // json for all functions
+import flatJson from './map/fetch-json-object' // fetch api and create flats and activeFlats
 import Content from './map/content' // markers popup
 import FunctionalRightBlock from './create-filters/right-block' // init right block
-import Preloader from './preloader'  // preloader download
-import '../style/style.scss' // link style
-import Detect from './create-filters/detected'
 
-
-const map = document.querySelector('.wrapper')
-const load = new Preloader()
+import '../style/style.scss' // import style
 
 document.addEventListener('DOMContentLoaded', async () => { // download web site
+    const rightBlock = new FunctionalRightBlock() // instance Right block / right-block
     const app = new initApplication() // left block
-    const rightBlock = new FunctionalRightBlock() // right block
-    const fjson = new flatJson() // json
-    const d = new Detect()
-
-    // d.detectChanges()
-
-    await fjson.fetchFlats()
-    await fjson.proxyActiveFlats()
-
-    rightBlock.initRightBlock(fjson.flats)
-    app.initMyMap(fjson.activeFlats)
-    app.renderMarkers(fjson.activeFlats)
-})
-
-map.addEventListener('click', (e) => { // popup
-    console.log(e.target)
-    const app = new Content()
-    app.initPopup(e)
-})
+    const fjson = new flatJson() // instance flatJson / fetch-json-object
+    
+    const map = document.querySelector('.wrapper')
+    const btn = document.querySelector('.btn-render') 
 
 
-load.loadData().then(() => {  // preloaded
-    let preLoader = document.getElementById('preloader')
-    preLoader.classList.add('hidden')
-    preLoader.classList.remove('visible')
-})
+    await fjson.fetchFlats()  // function for fetch api on dom-content-loaded
+    await fjson.proxyActiveFlats()  // function for fetch api and create new array activeFlats
+
+    rightBlock.initRightBlock(fjson.flats)  // initilization right block site
+    app.initMyMap() // only initilization map
+    app.renderMarkers(fjson.flats) // add or re-render markers on map
 
 
-const btn = document.querySelector('.btn-render')
-btn.addEventListener('click', async (e) => {
-    const allMarkers = document.querySelectorAll('.my-div-icon')
-        console.log(allMarkers)
-        allMarkers.forEach(marker => {
-            marker.classList.add('hide')
-        })
+
+    map.addEventListener('click', (e) => { // my popup
+        const app = new Content()  // instance Content / content.js
+        app.initPopup(e)  // initilization markers popup on map
+    })
+
+
+
+    btn.addEventListener('click', async (e) => {  // in process, function rerender markers on map
+
+        app.updateMarkers()
+    })
 })

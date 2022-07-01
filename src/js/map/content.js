@@ -7,7 +7,7 @@ export default class Content {
         this.item = document.querySelector('.item')
     }
 
-    popup(data) {
+    popupCard(data) {  // create popup card
         const item = `
             <div class="item" data-street="${data.dataset.street}">
                 <img class="item__photo" src="./fonts/2.jpg" alt="home"> 
@@ -21,26 +21,25 @@ export default class Content {
         this.wrapper.insertAdjacentHTML('beforeend', item)
     }
 
-    destroy() {
+    destroy() {  // destroy popup card
         this.item.innerHTML = ''
         this.item.remove()
     }
 
-    initPopup(e) {
+    initPopup(e) {  // function init my popup
         if (e.target.classList.contains('hide')) {
-            console.log(e.target)
-            this.popup(e.target)
+            this.popupCard(e.target)
         }
-        const btn = document.querySelector('.btn-render')
-        const loop = document.querySelector('.loop')
+        const btn = document.querySelector('.btn-render'),
+            loop = document.querySelector('.loop')
 
         if(e.target === btn || e.target === loop) {
             return
         }
 
-        const close = document.querySelector('.item__close')
-        const map = document.querySelector('.block-map')
-        const data = this.item.getAttribute('data-street')
+        const close = document.querySelector('.item__close'),
+            map = document.querySelector('.block-map'),
+            data = this.item.getAttribute('data-street')
 
         if (e.target === close || e.target === map) {
             this.destroy()

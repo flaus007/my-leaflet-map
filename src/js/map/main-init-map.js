@@ -8,16 +8,19 @@ export default class initApplication {
         this.map = new Functional()
     }
 
-    initMyMap(jsonFlats) {
+    initMyMap() {
         try{
-            this.map.initMap()
-            // this.map.initMapAndMarkers(jsonFlats)
-        } catch (e) {
-            console.log(e)
+            this.map.map
+        } catch (ex) {
+            console.error(ex)
         }
     }
 
     renderMarkers(jsonFlats) {
-        this.map.initMapAndMarkers(jsonFlats)
+        this.map.initMarkers(jsonFlats)
+    }
+
+    updateMarkers() {
+        this.map.updateLayers()
     }
 }

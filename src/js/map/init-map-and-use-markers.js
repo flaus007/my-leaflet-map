@@ -1,50 +1,42 @@
 import L, { marker } from 'leaflet';
 
 export default class Functional {
-    // map
-    // markers
+
     myIcon
     popup
 
     constructor() {
-        this.map = L.map('map')
-        this.markers = new L.LayerGroup()
+        this.map = L.map('map').setView([49.587085, 34.543770], 13)  // create leaflet map
+        this.tileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map)
+        this.layer = L.layerGroup().addTo(this.map)
     }
 
+    initMarkers(arrayFlats) {
+        arrayFlats.forEach(flat => {
+            const info = `<span class="hide" data-street="${flat.street}" data-price="${flat.price}"></span>`
 
-    initMap() {
-        this.map.setView([49.587085, 34.543770], 13)
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map)
-        // this.markers.addTo(this.map)
-    }
+            const iconDiv = L.divIcon({
+                className: 'my-div-icon',
+                html: info
+            })
 
-    initMarkers(obj) {
-        const info = `
-        <span class="hide" data-street="${obj.street}" data-price="${obj.price}"></span>
-        `
-
-        const iconDiv = L.divIcon({
-            className: 'my-div-icon',
-            html: info
+            L.marker([flat.lat, flat.lng], {
+                icon: iconDiv,
+                alt: flat.street,
+                opacity: 0.9
+            }).addTo(this.layer)
         })
-
-        const marker = L.marker([obj.lat, obj.lng], {
-            icon: iconDiv,
-            title: obj.price,
-            alt: obj.street,
-            opacity: 0.9
-        })
-            .bindTooltip(obj.street).openTooltip()
-            .addTo(this.markers)
-
-        this.markers.addTo(this.map)
-        return marker
     }
 
-    initMapAndMarkers(obj) {  // add new func
-        this.markers.clearLayers()
-        obj.forEach(marker => {
-            this.initMarkers(marker)
+    updateLayers() {
+        let layerArr = this.layer.getLayers()
+        
+        this.layer.eachLayer(layer => {
+            let layerIndex = layerArr.indexOf(layer)
+            
+            if (layerIndex !== 0 || layerIndex !== 1) {
+                this.layer.removeLayer(layer);
+            }
         })
     }
 }

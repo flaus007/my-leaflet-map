@@ -25,32 +25,6 @@ $sail-blue: #326789;
     position: relative;
 }
 
-// preloader
-
-#preloader {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 9999999;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-    background: transparent url('//cdnjs.cloudflare.com/ajax/libs/file-uploader/3.7.0/processing.gif') no-repeat center center;
-}
-
-.visible {
-    visibility: visible;
-    opacity: 1;
-}
-
-.hidden {
-    visibility: hidden;
-    opacity: 0;
-}
-
-
 // container filters
 .container {
     display: block;
@@ -248,11 +222,6 @@ $sail-blue: #326789;
 }
 
 .price-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 70px;
-
     &__text {
         margin: 0 15px;
         font-size: 14px;
@@ -296,6 +265,12 @@ $sail-blue: #326789;
         border-radius: 5px;
         background: $blue;
     }
+}
+
+.price-values{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .price-range {

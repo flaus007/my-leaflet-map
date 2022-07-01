@@ -2,10 +2,9 @@ import Appartaments from './create-object'
 
 export default class flatJson {
 
-        flats = []
-        activeFlats = []
+    flats = []
+    activeFlats = []
 
- // version 1.0 фетч с соседней папки
     async fetchFlats() {
         try {
             const response = await fetch('http://site-constructor.stage/appartaments.json')
