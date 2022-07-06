@@ -5,11 +5,10 @@ export default class Actions {
 
     constructor() {
         this.rangeInput = document.querySelectorAll('.price-range__input')  // input range
-        this.priceInput = document.querySelectorAll('.price-bottom__input')  // input number price
+        this.priceInput = document.querySelectorAll('.price-values__input')  // input number price
         this.price = document.querySelector('.price')  // div price hav all inputs  // price-range mb class without price
         this.valuesPrice = document.querySelector('.price-values')  // div, hav 2 input number - price
         this.range = document.querySelector('.price-slider .price-slider__progress')  // div slider range
-        this.fixedMin = this.priceInput[0].value  // fixed value min
         this.priceGap = 5000  // fixed range between two-sliders
     }
 
@@ -40,6 +39,7 @@ export default class Actions {
 
     // new stuff
     inputValue() {  // method for input number
+        const fixedMin = this.priceInput[0].value
         this.priceInput.forEach(input => {
             input.addEventListener('input', e => {
                 this.minPrice = parseInt(this.priceInput[0].value)
@@ -48,10 +48,10 @@ export default class Actions {
                 if ((this.maxPrice - this.minPrice >= this.priceGap) && this.maxPrice <= this.rangeInput[1].max) {
                     if (e.target.classList.contains('price-min')) {
                         this.rangeInput[0].value = this.minPrice
-                        this.range.style.left = (((this.minPrice - this.fixedMin) / (this.rangeInput[0].max - this.fixedMin)) * 100) + '%'
+                        this.range.style.left = (((this.minPrice - fixedMin) / (this.rangeInput[0].max - fixedMin)) * 100) + '%'
                     } else {
                         this.rangeInput[1].value = this.maxPrice
-                        this.range.style.right = 100 - ((this.maxPrice - this.fixedMin) / (this.rangeInput[1].max - this.fixedMin)) * 100 + '%'
+                        this.range.style.right = 100 - ((this.maxPrice - fixedMin) / (this.rangeInput[1].max - fixedMin)) * 100 + '%'
                     }
                 }
             })
@@ -59,6 +59,7 @@ export default class Actions {
     }
 
     inputRangeValue() {  // method for input range
+        const fixedMin = this.priceInput[0].value
         this.rangeInput.forEach(input => {
             input.addEventListener('input', e => {
                 this.minPrice = parseInt(this.rangeInput[0].value)
@@ -72,9 +73,12 @@ export default class Actions {
                     }
                 } else {
                     this.priceInput[0].value = this.minPrice
-                    this.range.style.left = (((this.minPrice - this.fixedMin) / (this.rangeInput[0].max - this.fixedMin)) * 100) + '%'
+                    console.log(this.minPrice)
+                    console.log(fixedMin)
+                    console.log(this.rangeInput[0].max)
+                    this.range.style.left = (((this.minPrice - fixedMin) / (this.rangeInput[0].max - fixedMin)) * 100) + '%'
                     this.priceInput[1].value = this.maxPrice
-                    this.range.style.right = 100 - ((this.maxPrice - this.fixedMin) / (this.rangeInput[1].max - this.fixedMin)) * 100 + '%'
+                    this.range.style.right = 100 - ((this.maxPrice - fixedMin) / (this.rangeInput[1].max - fixedMin)) * 100 + '%'
                 }
             })
         })

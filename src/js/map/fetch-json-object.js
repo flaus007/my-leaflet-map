@@ -3,7 +3,6 @@ import Appartaments from './create-object'
 export default class flatJson {
 
     flats = []
-    activeFlats = []
 
     async fetchFlats() {
         try {
@@ -15,30 +14,26 @@ export default class flatJson {
         }
     }
 
-    async proxyActiveFlats(myProp, value) {
-        const myArr = this.activeFlats
+    proxyActiveFlats(myProp, myValue, minVal, maxVal) {
+        const arr = []
+
         const proxy = new Proxy(this.flats, {
-            get (target, prop) {
-                target.forEach(flat => {
-                    if (!myProp) {
-                        myArr.push(flat)
-                        return
+            set(target, prop, value) {
+                target.forEach(item => {
+                    if ((prop === 'street' || prop === 'rooms') && item[prop] == value) {  // for street filter
+                        arr.push(item)
                     }
-                    if (myProp === 'price' && flat[myProp] < value) {
-                        myArr.push(flat)
-                        return
-                    }
-                    if (myProp === 'rooms' && flat[myProp] === value) {
-                        myArr.push(flat)
-                        return
-                    }
-                    if (myProp === 'street' && flat[myProp] === value) {
-                        myArr.push(flat)
-                        return
+                    if (prop === 'price') {
+                        if (item[prop] >= minVal && item[prop] <= maxVal) {
+                            arr.push(item)
+                        }
                     }
                 })
+                return true
             }
         })
-        return proxy[myProp]
+        proxy[myProp] = myValue
+
+        return arr
     }
 }

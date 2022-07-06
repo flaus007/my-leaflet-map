@@ -30,12 +30,19 @@ export default class CreateForm {
                         <h2 class="card-info__rooms">Кількість кімнат - ${json.rooms}
                         <h3 class="card-info__date">${json.date}</h3></h2>
                         <button class="card-info__call">
-                            <img src="./fonts/phone.svg" alt="call">
+                            <a href="${json.phone || 'tel:+380696771270'}">
+                                <img src="./fonts/phone.svg" alt="call">
+                            </a>
                         </button>
                     </div>
                 </div>
                 `
         this.cards.insertAdjacentHTML('beforeend', card)
+    }
+
+    clearCardsBlock() {
+        const block = document.querySelector('.cards')
+        block.innerHTML = ''
     }
 
     conditionsForSelects(e, wrapper, list, zeroItem) {  // logic for open and close selects
@@ -75,5 +82,12 @@ export default class CreateForm {
         document.addEventListener('click', (e) => {
             this.conditionsForSelects(e, list, li, first)
         })
+    }
+
+    rollbackToTheStandart() {  // new function for reset filters
+        const zeroStreet = document.querySelector('.streetlist__search'),
+            zeroRooms = document.querySelector('.open__zero')
+        zeroStreet.value = ''
+        zeroRooms.innerHTML = zeroRooms.dataset.first
     }
 }
