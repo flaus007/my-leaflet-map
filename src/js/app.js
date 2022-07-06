@@ -2,6 +2,7 @@ import flatJson from './map/fetch-json-object' // fetch api and create flats and
 import Content from './map/content' // markers popup
 import FunctionalRightBlock from './create-filters/right-block' // init right block
 import Functional from './map/init-map-and-use-markers'  // init map
+import Upload from './form/upload'
 
 import '../style/style.scss' // import style
 
@@ -9,13 +10,14 @@ document.addEventListener('DOMContentLoaded', async () => { // download web site
     const rightBlock = new FunctionalRightBlock() // instance Right block / right-block
     const app = new Functional() // left block and leaflet layer = map
     const fjson = new flatJson() // instance flatJson / fetch-json-object
+    const upload = new Upload()
 
     const map = document.querySelector('.wrapper'),
         btn = document.querySelector('.btn-render'),
         container = document.querySelector('.container'),
         slider = document.querySelector('.price'),
         search = document.querySelector('.street'),
-        wrap = document.querySelector('.app')
+        formOpen = document.querySelector('.app')
 
     await fjson.fetchFlats()  // function for fetch api on dom-content-loaded
 
@@ -103,19 +105,12 @@ document.addEventListener('DOMContentLoaded', async () => { // download web site
 
     // filters flats on event
 
-    // add new cards
+    // open form post
 
-    wrap.addEventListener('click', e => {
-        const modal = document.querySelector('.modal'),
-            add = document.querySelector('.btn-post')
+    formOpen.addEventListener('click', e => upload.openForm(e))
 
-        if (e.target === add || e.target.classList.contains('post')) {
-            modal.classList.remove('modal-show')
-            return
-        }
-        if (e.target.classList.contains('overflow') || e.target.classList.contains('close')) {
-            modal.classList.add('modal-show')
-            return
-        }
-    })
+    upload.btnOpen.addEventListener('click', () => upload.triggerInput())
+    upload.input.addEventListener('change', e => upload.changeHandler(e))
+    upload.createBlockForImage()
+    upload.deleteImage()
 })
