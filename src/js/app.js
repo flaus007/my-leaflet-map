@@ -113,4 +113,12 @@ document.addEventListener('DOMContentLoaded', async () => { // download web site
     upload.input.addEventListener('change', e => upload.changeHandler(e))
     upload.createBlockForImage()
     upload.deleteImage()
+
+    document.querySelector('.btn-send').addEventListener('click', () => {
+        upload.sendForm()
+    })
+
+    document.querySelector('.form').addEventListener('change', e => {
+        upload.collectInfoObject(e)
+    })
 })

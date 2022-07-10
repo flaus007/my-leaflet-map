@@ -21,7 +21,7 @@ export default class CreateForm {
         const card = `
                 <div class="card" data-street="${json.street}">
                     <div class="card-photo">
-                        <img src="./fonts/1.jpg" alt="Flats photo">
+                        <img src="${json.image || './fonts/1.jpg'}" class="card-info__img" alt="Flats photo">
                     </div>
                     <div class="card-info">
                         <h2 class="card-info__price">${json.price}$</h2>

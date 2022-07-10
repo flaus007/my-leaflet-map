@@ -534,7 +534,8 @@ $sail-blue: #326789;
 }
 
 // overflow and form 
-.modal {
+.modal,
+.send-modal {
     z-index: 6;
     position: fixed;
     top: 0;
@@ -546,7 +547,8 @@ $sail-blue: #326789;
     align-items: center;
 }
 
-.overflow {
+.overflow,
+.send-overflow {
     background: black;
     opacity: 0.5;
     position: absolute;
@@ -557,7 +559,8 @@ $sail-blue: #326789;
     z-index: 6;
 }
 
-.form {
+.form,
+.send-window {
     position: relative;
     background-color: $green;
     border: 1px solid $green;
@@ -597,6 +600,16 @@ $sail-blue: #326789;
 
         input[type="file"] {
             display: none;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
     }
 }
@@ -703,6 +716,40 @@ $sail-blue: #326789;
     }
 }
 
-.gallery__image:hover .gallery__remove{
+.gallery__image:hover .gallery__remove {
     opacity: 1;
+}
+
+.send-modal {
+    z-index: 10;
+    justify-content: center;
+}
+
+.send-window {
+    max-height: 200px;
+    height: 100%;
+    max-width: 600px;
+    width: 100%;
+    padding: 10px;
+
+    &__text {
+        text-align: center;
+        display: block;
+        width: 75%;
+        margin-bottom: 40px;
+    }
+
+    &__svg {
+        border: 1px solid #fff;
+        border-radius: 5px;
+        padding: 5px;
+        width: 150px;
+        height: 45px;
+
+        &:hover {
+            background-color: $blue;
+            border: 1px solid $blue;
+            transition: 0.2s linear all;
+        }
+    }
 }

@@ -6,8 +6,7 @@ export default class Appartaments {
     rooms
     date
     price
-    status
-    zoom
+    image
 
     constructor(jsonData) {
         this.fillObj(jsonData)
@@ -21,7 +20,6 @@ export default class Appartaments {
         if (data.rooms) this.rooms = data.rooms
         if (data.date) this.date = data.date
         if (data.price) this.price = data.price
-        if (data.status) this.status = data.status
-        if (data.zoom) this.zoom = data.zoom
+        if (data.image) this.image = data.image
     }
 }

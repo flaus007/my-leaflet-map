@@ -40,9 +40,15 @@ export default class FunctionalRightBlock {
 
     searchStreet(e) {
         let word = e.target.value.trim()
+        let requestSearch = new RegExp (word, 'i')
         const list = document.querySelectorAll('.streetlist__li')
+        console.log(word)
         list.forEach(li => {
-            if (li.innerText.toLowerCase().includes(word) || li.innerText.includes(word)) {
+            if (word.length < 2) {
+                li.classList.add('open')
+                return
+            }
+            if(li.innerHTML.search(requestSearch) !== -1) {
                 li.classList.add('open')
             } else {
                 li.classList.remove('open')

@@ -118,26 +118,26 @@
 
                 <span>
                     <label for="getcity">Місто:</label>
-                    <input type="text" id="getcity" name="city">
+                    <input type="text" id="getcity" name="city" data-info="js-city" class="js-input">
                 </span>
                 <span>
                     <label for="getstreet">Вулиця:</label>
-                    <input type="text" id="getstreet" name="street">
+                    <input type="text" id="getstreet" name="street" data-info="js-street" class="js-input">
                 </span>
                 <span>
                     <label for="getrooms">Кількість кімнат:</label>
-                    <input type="text" id="getrooms" name="rooms">
+                    <input type="number" id="getrooms" name="rooms" data-info="js-getrooms" class="js-input" inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')">
                 </span>
                 <span>
                     <label for="getprice">Вкажіть ціну:</label>
-                    <input type="text" id="getprice" name="price">
+                    <input type="number" id="getprice" name="price" data-info="js-price" class="js-input" inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')">
                 </span>
                 <span>
                     <label for="getphone">Номер телефону:</label>
-                    <input type="text" id="getphone" name="phone">
+                    <input type="number" id="getphone" name="phone" data-info="js-phone" class="js-input" inputmode="numeric" oninput="this.value = this.value.replace(/\D+/g, '')">
                 </span>
                 <span class="js-btn-open">
-                    <input type="file" id="file" multiple accept="image/*">
+                    <input type="file" id="file" multiple accept="image/*" data-info="js-image" name="image" class="js-input">
                     <button class="btn-form btn-open">Вибрати
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="send-icon">
                             <path style="fill:#fff"
@@ -152,17 +152,17 @@
 
             <div class="form-card">
                 <div class="form-photo">
-                    <img src="" alt="Flats photo">
+                    <img src="" alt="Flats photo" class="js-form-photo">
                 </div>
                 <div class="form-info">
-                    <h2 class="form-info__price"></h2>
-                    <h2 class="form-info__city"></h2>
-                    <h2 class="form-info__street"></h2>
-                    <h2 class="form-info__rooms">
-                        <h3 class="form-info__date"></h3>
+                    <h2 class="form-info__price js-price"></h2>
+                    <h2 class="form-info__city js-city"></h2>
+                    <h2 class="form-info__street js-street"></h2>
+                    <h2 class="form-info__rooms js-rooms">
+                        <h3 class="form-info__date js-date"></h3>
                     </h2>
                     <button class="form-info__call">
-                        <a href="tel:+380696771270">
+                        <a href="">
                             <img src="./fonts/phone.svg" alt="call">
                         </a>
                     </button>

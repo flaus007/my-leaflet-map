@@ -1,21 +1,28 @@
+import LogicActions from "./form-actions"
+
 export default class Upload {
 
     files = []
+    newFlat = {}
+    logic = new LogicActions()
 
     constructor() {
         this.input = document.querySelector('#file')
         this.btnOpen = document.querySelector('.btn-open')
+        this.btnSend = document.querySelector('.btn-send')
     }
 
     triggerInput() {
         this.input.click()
     }
+    
 
     openForm(e) {  // open and close form
         const modal = document.querySelector('.modal'),
             add = document.querySelector('.btn-post')
 
         if (e.target === add || e.target.classList.contains('post')) {
+            this.logic.clearInputs()
             modal.classList.remove('js-hide')
             return
         }
@@ -28,6 +35,7 @@ export default class Upload {
     createBlockForImage() {
         const gallery = document.createElement('div'),
             spanOpen = document.querySelector('.js-btn-open')
+
         gallery.classList.add('gallery')
         spanOpen.insertAdjacentElement('afterend', gallery)
     }
@@ -46,42 +54,31 @@ export default class Upload {
             if (!file.type.match('image')) {
                 return
             }
-            this.readerUrl(file, gallery)
+            this.logic.readerUrl(file, gallery)
         })
-    }
-
-    readerUrl(file, gallery) {
-        const reader = new FileReader()
-
-        reader.onload = event => {
-            const src = event.target.result
-            gallery.insertAdjacentHTML('afterbegin',
-                `
-                <div class="gallery__image">
-                    <div class="gallery__remove" data-close="${file.name}">&times;</div>
-                    <img src="${src}" alt="${file.name}" />
-                </div>
-                `)
-        }
-
-        reader.readAsDataURL(file)
     }
 
     deleteImage() {
         const gallery = document.querySelector('.gallery')
-        gallery.addEventListener('click', (e) => this.removeImage(e, gallery))
+        gallery.addEventListener('click', (e) => this.logic.removeImage(e, gallery, this.files))
     }
 
-    removeImage(e, gallery) {
-        if (!e.target.dataset.close) {
-            return 
+    collectInfoObject(e) {
+        this.logic.repeatableOptions(e, e.target.dataset.info, e.target.name, this.newFlat)
+    }
+
+    async sendForm() {
+        const inputs = document.querySelectorAll('.js-input')
+        for (let i = 0; i < inputs.length; i++) {
+            if (inputs[i].value.length === 0) {
+                console.log(inputs[i])
+                inputs[i].style.border = '1px solid red'
+                return
+            }
         }
-        const { close } = e.target.dataset
-        console.log(name)
-        this.files = this.files.filter(file => file.close !== close)
-
-        const block = gallery.querySelector(`[data-close="${close}"]`).closest('.gallery__image')
-
-        block.remove()
+        this.newFlat['date'] = new Date().toLocaleDateString()
+        await this.logic.fetchCoordinate(this.newFlat)
+        console.log(this.newFlat)
+        await this.logic.postFlat(this.newFlat)
     }
 }
